@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from .models import Post
@@ -24,5 +26,8 @@ def post_detail(request, id):
     # raise Http404('Post not found')
     post = get_object_or_404(Post, id=id, status=Post.Status.PUBLISHED)
 
-    context = {'post': post}
+    context = {
+        'post': post,
+        'new_date': datetime.datetime.now()
+    }
     return render(request, "product/detail.html", context)
