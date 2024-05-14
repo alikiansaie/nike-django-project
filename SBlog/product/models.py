@@ -13,12 +13,12 @@ class Post(models.Model):
         REJECTED = 'RJ', 'Rejected'
 
     # Details :
-    author = models.ForeignKey(User, on_delete=models.RESTRICT, related_name="user_posts")
-    title = models.CharField(max_length=250)
+    author = models.ForeignKey(User, on_delete=models.RESTRICT, related_name="user_posts", verbose_name="نویسنده")
+    title = models.CharField(max_length=250, verbose_name= "موضوع")
     description = models.TextField(max_length=300)
     size = models.CharField(max_length=10)
     types = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, verbose_name="اسلاگ")
 
     # Date :
     publish = models.DateTimeField(default=timezone.now)
@@ -26,7 +26,7 @@ class Post(models.Model):
     updated = models.DateTimeField(auto_now=True)
     date = models.DateField(default=timezone.now)
     # Situation :
-    status = models.CharField(max_length=250, choices=Status.choices, default=Status.DRAFT)
+    status = models.CharField(max_length=250, choices=Status.choices, default=Status.DRAFT, verbose_name="وضعیت")
 
     # manager :
     class PublishManager(models.Manager):
@@ -39,6 +39,8 @@ class Post(models.Model):
         indexes = [
             models.Index(fields=['-publish'])
         ]
+        verbose_name="پست"
+        verbose_name_plural="پست ها"
 
     objects = models.Manager()
     PublishManager = PublishManager()
