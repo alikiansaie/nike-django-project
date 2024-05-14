@@ -15,7 +15,7 @@ class Post(models.Model):
 
     # Details :
     author = models.ForeignKey(User, on_delete=models.RESTRICT, related_name="user_posts", verbose_name="نویسنده")
-    title = models.CharField(max_length=250, verbose_name= "موضوع")
+    title = models.CharField(max_length=250, verbose_name="موضوع")
     description = models.TextField(max_length=300)
     size = models.CharField(max_length=10)
     types = models.CharField(max_length=100)
@@ -40,8 +40,8 @@ class Post(models.Model):
         indexes = [
             models.Index(fields=['-publish'])
         ]
-        verbose_name="پست"
-        verbose_name_plural="پست ها"
+        verbose_name = "پست"
+        verbose_name_plural = "پست ها"
 
     objects = jmodels.jManager()
     PublishManager = PublishManager()
